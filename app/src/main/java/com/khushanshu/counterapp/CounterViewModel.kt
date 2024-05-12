@@ -10,14 +10,15 @@ class CounterViewModel: ViewModel(){
     //Now we fetch count from data source via repository so we need to have object of it
     //IT CAN ALSO BE PASSED AS PARAMETER TO ViewModel
     private val repository: CounterRepository = CounterRepository();
+
+    //the state we want to expose and preserve to screen or view here the "count";
     private val _count=mutableStateOf(repository.getCounter().count);
 
     //Exposing the _count as immutable state i.e preserving _count state i.e no change in rotation
     //since val so no  change
     //changes in private _count are reflected in app via count;
-
+    //delegating _count to count
     val count:MutableState<Int> = _count;
-
     //count is referencing to same value as _count so when _count changes so does the count
 
     fun increment(){
